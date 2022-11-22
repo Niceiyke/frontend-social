@@ -1,0 +1,44 @@
+.shareContainer{
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    border-bottom: #e7e2e2 1px solid;
+}
+.shareheading h3{
+    font-weight: bold;
+    font-size: 18px;
+}
+.shareitems{
+    display: flex;
+    justify-content: space-between;
+}
+
+.shareadditions{
+    display: flex;
+    margin: auto;
+
+}
+
+.shareadditions span{
+padding: 10px;
+text-align: center;
+}
+
+.shareContent textarea{
+    border-radius: 10px;
+    border: none;
+    border-bottom: #e7e2e2 1px solid;
+    
+}
+
+.btn-sharebox{
+    width: 7pc;
+    height: 3pc;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #B92B27;
+}
