@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Homepage from './Homepage';
 import Sidebar from '../components/Sidebar';
+import Widget from '../components/Widget';
 
 const Layout = () => {
   return (
@@ -16,7 +17,7 @@ const Layout = () => {
           <Homepage />
         </Col>
         <Col xs={2} md={4}>
-          xs=6 md=4
+          <Widget />
         </Col>
       </Row>
       </Container>
