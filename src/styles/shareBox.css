@@ -1,11 +1,14 @@
 .shareContainer{
     background-color: rgb(255, 255, 255);
-    margin: auto;
-    padding: 5px;
     border: none;
     border-radius: 10px;
     border-bottom: #e7e2e2 1px solid;
     
+}
+.imagebox{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
 }
 .shareheading h3{
     font-weight: bold;

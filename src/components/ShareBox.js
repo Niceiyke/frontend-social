@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/shareBox.css'
 import { FaUpload, FaPoll} from "react-icons/fa";
 import { FcUpload, FcShare } from "react-icons/fc";
+import image from '../assets/images/image.png'
 
 
 const ShareBox = () => {
@@ -10,30 +11,33 @@ const ShareBox = () => {
       <div className="shareheading">
         <h3>Home</h3>
       </div>
-      <div className="shareBox">
-        <div className="shareContent">
-          <textarea
-            rows="2"
-            cols="53"
-            placeholder="share your mind !"
-          ></textarea>
-        </div>
-        <div className="shareitems">
-          <div className="shareadditions">
-            <span>
-              <FaUpload />
-            </span>
-            <span>
-              <FcUpload />
-            </span>
-            <span>
-              <FaPoll />
-            </span>
-            <span>
-              <FcShare />
-            </span>
+      <div className="imagebox">
+        <img src={image} alt="Logo" height="75px" width="75px" />;
+        <div className="shareBox">
+          <div className="shareContent">
+            <textarea
+              rows="2"
+              cols="54"
+              placeholder="share your mind !"
+            ></textarea>
           </div>
-          <button className="btn-sharebox">Share</button>
+          <div className="shareitems">
+            <div className="shareadditions">
+              <span>
+                <FaUpload />
+              </span>
+              <span>
+                <FcUpload />
+              </span>
+              <span>
+                <FaPoll />
+              </span>
+              <span>
+                <FcShare />
+              </span>
+            </div>
+            <button className="btn-sharebox">Share</button>
+          </div>
         </div>
       </div>
     </div>
