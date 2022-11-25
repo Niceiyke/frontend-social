@@ -10,7 +10,7 @@ const Sidebar = () => {
         <Link to='/'>Bookmark</Link>
         <Link to='/'>Messages</Link>
         <Link to='/'>Notifications</Link>
-        <Link to='/'>Profile</Link>
+        <Link to='/profile'>Profile</Link>
         <button className='btn-sidebar'>Share</button>
     </div>
   )

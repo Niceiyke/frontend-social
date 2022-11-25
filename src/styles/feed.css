@@ -1,0 +1,29 @@
+.feedbox{
+    display: flex;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: none;
+    border-bottom: #e7e2e2 1px solid;
+}
+
+.feedname{
+    font-weight: 900;
+    font-size: 16px;
+    padding-right:5px;
+}
+
+.feednickname{
+    font-weight: 300;
+    font-size: 14px;
+   
+}
+
+.feedpost{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.reaction{
+  
+    padding-left: 5%;
+}

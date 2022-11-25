@@ -12,28 +12,32 @@ const ShareBox = () => {
         <h3>Home</h3>
       </div>
       <div className="imagebox">
-        <img src={image} alt="Logo" height="75px" width="75px" />;
+        <img src={image} alt="Logo" height="75px" width="75px" />
         <div className="shareBox">
           <div className="shareContent">
             <textarea
               rows="2"
               cols="54"
-              placeholder="share your mind !"
+              placeholder="share your code !"
             ></textarea>
           </div>
           <div className="shareitems">
             <div className="shareadditions">
               <span>
-                <FaUpload />
+                <FaUpload /> 
+                <p>Share Betcode</p>
               </span>
               <span>
                 <FcUpload />
+                <p>Share Betcode</p>
               </span>
               <span>
                 <FaPoll />
+                <p>create a poll</p>
               </span>
               <span>
                 <FcShare />
+                <p>write an Article</p>
               </span>
             </div>
             <button className="btn-sharebox">Share</button>
