@@ -35,12 +35,9 @@ function App() {
           <Route element={<LoginPage />} path="/login">
            Login
           </Route>
-<<<<<<< HEAD
           <Route element={<RegisterPage />} path="/register">
            Register
           </Route>
-=======
->>>>>>> 9e8b4356f19e06feb6d76764568a3611dfdf382b
         </Routes>
       </AuthProvider>
     </>
