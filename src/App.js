@@ -8,11 +8,7 @@ import { AuthProvider } from './contex/AuthContext';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Layout from './pages/Layout';
-<<<<<<< HEAD
 import LoginPage from './pages/LoginPage';
-=======
-import LoginPage from './pages/Login';
->>>>>>> 9e8b4356f19e06feb6d76764568a3611dfdf382b
 import Profilepage from './pages/Profilepage';
 import RegisterPage from './pages/RegisterPage';
 
