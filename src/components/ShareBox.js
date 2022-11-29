@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../styles/shareBox.css'
 import { FaUpload, FaPoll} from "react-icons/fa";
 import { FcUpload, FcShare } from "react-icons/fc";
-import image from '../assets/images/image.png'
+import AuthContext from '../contex/AuthContext';
+
 
 
 const ShareBox = () => {
+  const{profile}=useContext(AuthContext)
   return (
     <div className="shareContainer">
       <div className="shareheading">
         <h3>Home</h3>
       </div>
       <div className="imagebox">
-        <img src={image} alt="Logo" height="75px" width="75px" />
+        <img src={profile.picture} alt="Logo" height="45px" width="45px" />
         <div className="shareBox">
           <div className="shareContent">
             <textarea

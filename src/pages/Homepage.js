@@ -8,8 +8,6 @@ const Homepage = () => {
     <div className="main">
       <ShareBox />
       <Feed />
-      <Feed />
-      <Feed />
     </div>
   );
 }
