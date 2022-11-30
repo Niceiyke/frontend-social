@@ -30,7 +30,10 @@ export const AuthProvider = ({children}) => {
   
   },[])
 
- 
+
+  const refreshPage = () => {
+    navigate(0);
+  }
   const getProfile = async (id)=>{
     let response = await fetch(`http://127.0.0.1:8000/api/profile/${id}`)
 
@@ -81,6 +84,8 @@ export const AuthProvider = ({children}) => {
         "posts":posts,
 
         "Login":Login,
+        'fetchPost': fetchPost,
+        "refreshPage": refreshPage,
     }
 
 

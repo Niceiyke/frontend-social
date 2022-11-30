@@ -21,12 +21,12 @@ const RegisterPage = () => {
                 password: e.target.password.value}),
             })
         let data = await response.json()
+        console.log(data)
         if (response.status ===201){
             navigate('/login')
 
         }
-        console.log("response",response)
-        console.log("Data", data)
+    
 
     }
 

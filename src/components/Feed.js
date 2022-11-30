@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import image from '../assets/images/image.png'
 import '../styles/feed.css'
-import {BiUpvote,BiDownvote } from "react-icons/bi";
 import AuthContext from '../contex/AuthContext';
+import Upvote from './Upvote';
+import Downvote from './Downvote';
 
 
 const Feed = () => {
 
-  const{profile,posts}=useContext(AuthContext)
+  const{posts}=useContext(AuthContext)
   return (
     <>
       {posts.map((post, index) => (
@@ -31,15 +32,17 @@ const Feed = () => {
               <div className="feedimage">
                 <img src={image} alt="Logo" height="200px" width="200px" />
                 <img src={image} alt="Logo" height="200px" width="200px" />
+           </div>
+           <div className="feedreaction">
+                
+               <Upvote post={post} />
+          
+                <Downvote post={post}/>
+                
               </div>
-              <div className="feedreaction">
-                <span className="reaction">
-                  <BiUpvote size="2em" />
-                </span>{" "}
-                <span className="reaction">
-                  <BiDownvote size="2em" />
-                </span>
-              </div>
+
+   
+      
             </div>
           </div>
         </div>

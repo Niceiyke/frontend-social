@@ -7,6 +7,7 @@ import { AuthProvider } from './contex/AuthContext';
 
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Homepage from './pages/Homepage';
 import Layout from './pages/Layout';
 import LoginPage from './pages/LoginPage';
 import Profilepage from './pages/Profilepage';
@@ -21,6 +22,9 @@ function App() {
           <Route element={<Layout />} path="/" exact></Route>
           <Route element={<Contact />} path="/contact">
             Contact
+          </Route>
+          <Route element={<Homepage />} path="/home">
+            
           </Route>
           <Route element={<About />} path="/about">
             About

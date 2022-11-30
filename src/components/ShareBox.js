@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../styles/shareBox.css'
 import { FaUpload, FaPoll} from "react-icons/fa";
 import { FcUpload, FcShare } from "react-icons/fc";
@@ -6,9 +7,37 @@ import AuthContext from '../contex/AuthContext';
 
 
 
+
 const ShareBox = () => {
-  const{profile}=useContext(AuthContext)
+  const{profile,fetchPost}=useContext(AuthContext)
+  const navigate =useNavigate()
+  const [body,setBody]=useState(null)
+  const{AuthToken,refreshPage}=useContext(AuthContext)
+
+  const createPost =async(e)=>{
+    e.preventDefault()
+    let response = await fetch("http://127.0.0.1:8000/api/",{
+      method:"POST",
+      headers: {
+          "Content-Type": "application/json",
+          'Authorization':  'Bearer '+`${AuthToken.access}` ,
+        },
+        body: JSON.stringify({
+          body: e.target.body.value,
+          
+          author: profile.user}),
+      })
+  let data = await response.json()
+  if (response.status ===201){
+
+    refreshPage()
+
+  }
+
+  }
+  
   return (
+    <form onSubmit={createPost}>
     <div className="shareContainer">
       <div className="shareheading">
         <h3>Home</h3>
@@ -20,6 +49,7 @@ const ShareBox = () => {
             <textarea
               rows="2"
               cols="54"
+              name='body'
               placeholder="share your code !"
             ></textarea>
           </div>
@@ -42,11 +72,12 @@ const ShareBox = () => {
                 <p>write an Article</p>
               </span>
             </div>
-            <button className="btn-sharebox">Share</button>
           </div>
         </div>
       </div>
     </div>
+    <button className="btn-sharebox">Share</button>
+    </form>
   );
 }
 

@@ -23,7 +23,7 @@
     font-size: 14px;
 }
 
-.reaction{
+.feedreaction{
   
-    padding-left: 5%;
+   display: flex;
 }
