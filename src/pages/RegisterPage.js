@@ -1,4 +1,3 @@
-import React, {useState } from 'react'
 import { useNavigate} from 'react-router-dom';
 
 import "../styles/loginpage.css";
@@ -16,9 +15,7 @@ const RegisterPage = () => {
             headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({
-                email: e.target.email.value,
-                password: e.target.password.value}),
+              body:null
             })
         let data = await response.json()
         console.log(data)

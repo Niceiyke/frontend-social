@@ -5,3 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.vote-active{
+  background-color: brown;
+}

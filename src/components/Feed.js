@@ -34,15 +34,9 @@ const Feed = () => {
                 <img src={image} alt="Logo" height="200px" width="200px" />
            </div>
            <div className="feedreaction">
-                
-               <Upvote post={post} />
-          
+                <Upvote post={post} />
                 <Downvote post={post}/>
-                
-              </div>
-
-   
-      
+              </div>   
             </div>
           </div>
         </div>
