@@ -1,13 +1,15 @@
 import React from 'react'
 import Feed from '../components/Feed';
 import ShareBox from '../components/ShareBox'
-import "../styles/homepage.css";
+
 
 const Homepage = () => {
   return (
-    <div className="main">
-      <ShareBox />
-      <Feed />
+    <div className="mt-4 ">
+      <div className="hidden md:block"><ShareBox /></div>
+      <div className='mx-auto'><Feed /></div>
+      
+      
     </div>
   );
 }

@@ -2,13 +2,13 @@
 import { Routes,Route} from 'react-router-dom'
 
 
-import Header from './components/Header';
+
 import { AuthProvider } from './contex/AuthContext';
 
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Homepage from './pages/Homepage';
-import Layout from './pages/Layout';
+import Layout from './components/Layout';
 import LoginPage from './pages/LoginPage';
 import Profilepage from './pages/Profilepage';
 import RegisterPage from './pages/RegisterPage';
@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <Header />
+ 
         <Routes>
           <Route element={<Layout />} path="/" exact></Route>
           <Route element={<Contact />} path="/contact">

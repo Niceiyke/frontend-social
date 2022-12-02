@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import image from '../assets/images/image.png'
-import '../styles/feed.css'
 import AuthContext from '../contex/AuthContext';
 import Upvote from './Upvote';
 import Downvote from './Downvote';
@@ -12,15 +11,14 @@ const Feed = () => {
   return (
     <>
       {posts.map((post, index) => (
-        <div className="feedbox" key={index}>
+        <div className="ml-1 flex mb-4 border-r-gray-500 border-b-4" key={index}>
           <img
             src={`http://127.0.0.1:8000/media/${post.author_picture}`}
             alt="Logo"
-            height="45px"
-            width="45px"
+            class=" border rounded-md h-12 w-12 "
           />
-          <div className="feedcontent">
-            <div className="feedauthor">
+          <div className="pl-4">
+            <div className="inline">
               <span className="feedname">{post.author_name}</span> @
               <span className="feednickname">{post.author_email}</span>
             </div>
@@ -29,9 +27,9 @@ const Feed = () => {
               <div className="feedtext">
                 <p>{post.body}</p>
               </div>
-              <div className="feedimage">
-                <img src={image} alt="Logo" height="200px" width="200px" />
-                <img src={image} alt="Logo" height="200px" width="200px" />
+              <div className="flex">
+                <img src={image} alt="Logo" className='h-24 w-24' />
+                <img src={image} alt="Logo" className='h-24 w-24' />
            </div>
            <div className="feedreaction">
                 <Upvote post={post} />
