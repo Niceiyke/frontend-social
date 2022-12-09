@@ -83,7 +83,7 @@ const ShareBox = () => {
             />
 
             <div className="ml-4">
-              <div className="flex justify-between mb-2 w-10/12">
+              <div className="flex justify-between mt-4 mb-2 w-10/12">
                 <span className="pr-2">
                   <FaUpload />
                 </span>
