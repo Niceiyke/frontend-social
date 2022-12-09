@@ -1,29 +1,17 @@
 import React from "react";
-import "../styles/widget.css";
+import Trend from "./Trend";
+
 
 const Widget = () => {
   return (
     <div className="widgetcontainer">
-      <div className="widgetsearch">
-        <input type="text" placeholder="Search here" />
+      <div className="w-full">
+        <input type="text" placeholder="Search here" className="w-4/5" />
       </div>
-      <div className="widgettrend">
-        <h3 className="widgettrendh3">Trends For You</h3>
-        <div className="trenditem">
-          <h5>Trending in nigeria</h5>
-          <h3>New Nigeria</h3>
-          <h6>11.5k likes</h6>
-        </div>
-        <div className="trenditem">
-          <h5>Trending in nigeria</h5>
-          <h3>New Nigeria</h3>
-          <h6>11.5k likes</h6>
-        </div>
-        <div className="trenditem">
-          <h5>Trending in nigeria</h5>
-          <h3>New Nigeria</h3>
-          <h6>11.5k likes</h6>
-        </div>
+      <div className="mt-4 ">
+        <h3 className="text-2xl font-bold">Trends For You</h3>
+
+        <Trend />
       </div>
     </div>
   );

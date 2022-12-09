@@ -10,11 +10,11 @@ import Container from 'react-bootstrap/Container';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Container >
-    <Router >
-    <App />
+    <Router>
+      <div className='container mx-auto'>
+        <App />
+      </div>
     </Router>
-    </Container>
   </React.StrictMode>
 );
 

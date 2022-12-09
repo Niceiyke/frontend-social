@@ -3,6 +3,7 @@ import image from '../assets/images/image.png'
 import AuthContext from '../contex/AuthContext';
 import Upvote from './Upvote';
 import Downvote from './Downvote';
+import PostImage from './PostImage';
 
 
 const Feed = () => {
@@ -11,30 +12,31 @@ const Feed = () => {
   return (
     <>
       {posts.map((post, index) => (
-        <div className="ml-1 flex mb-4 border-r-gray-500 border-b-4" key={index}>
+        <div className="ml-1 flex mb-4 border-b-4 w-10/12" key={index}>
           <img
             src={`http://127.0.0.1:8000/media/${post.author_picture}`}
             alt="Logo"
-            class=" border rounded-md h-12 w-12 "
+            className=" border rounded-full w-14 h-14 shrink-0"
           />
           <div className="pl-4">
             <div className="inline">
-              <span className="feedname">{post.author_name}</span> @
-              <span className="feednickname">{post.author_email}</span>
+              <span className="font-bold text-2xl">{post.author_name}</span>
+              <span className="font-md text-sm pl-2 text-red-500">
+                @{post.author_email}
+              </span>
             </div>
 
-            <div className="feedpost">
-              <div className="feedtext">
+            <div className="">
+              <div className="text-md">
                 <p>{post.body}</p>
               </div>
+              <div className="flex flex-wrap">
+                <PostImage post={post} />
+              </div>
               <div className="flex">
-                <img src={image} alt="Logo" className='h-24 w-24' />
-                <img src={image} alt="Logo" className='h-24 w-24' />
-           </div>
-           <div className="feedreaction">
                 <Upvote post={post} />
-                <Downvote post={post}/>
-              </div>   
+                <Downvote post={post} />
+              </div>
             </div>
           </div>
         </div>

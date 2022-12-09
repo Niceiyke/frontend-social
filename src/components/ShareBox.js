@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import '../styles/shareBox.css'
 import { FaUpload, FaPoll} from "react-icons/fa";
 import { FcUpload, FcShare } from "react-icons/fc";
 import AuthContext from '../contex/AuthContext';
@@ -11,74 +10,103 @@ import AuthContext from '../contex/AuthContext';
 const ShareBox = () => {
   const{profile,fetchPost}=useContext(AuthContext)
   const navigate =useNavigate()
-  const [body,setBody]=useState(null)
+  const [post,setPost]=useState('')
+  const [screenshot, setScreenshot]=useState([])
+
   const{AuthToken,refreshPage}=useContext(AuthContext)
 
   const createPost =async(e)=>{
     e.preventDefault()
+  let formdata = new FormData();
+  formdata.append('body',post)
+  formdata.append('author',profile.user)
+
+  for (let i = 0; i < screenshot.length; i++) {
+    let filename = screenshot[i].name;
+
+    formdata.append("uploaded_images", screenshot[i], filename);
+   
+  }
+      
+  
+
+   
     let response = await fetch("http://127.0.0.1:8000/api/",{
       method:"POST",
       headers: {
-          "Content-Type": "application/json",
+ 
           'Authorization':  'Bearer '+`${AuthToken.access}` ,
         },
-        body: JSON.stringify({
-          body: e.target.body.value,
-          
-          author: profile.user}),
-      })
-  let data = await response.json()
+      body: formdata
+        })
+    let data = await response.json()
+
   if (response.status ===201){
 
-    refreshPage()
+         console.log(data);
+         refreshPage()
 
   }
 
   }
+
+
   
   return (
     <form onSubmit={createPost}>
-    <div className="shareContainer">
-      <div className="shareheading">
-        <h3>Home</h3>
-      </div>
-      <div className="imagebox">
-        <img src={profile.picture} alt="Logo" height="45px" width="45px" />
-        <div className="shareBox">
-          <div className="shareContent">
-            <textarea
-              rows="2"
-              cols="54"
-              name='body'
-              placeholder="share your code !"
-            ></textarea>
-          </div>
-          <div className="shareitems">
-            <div className="shareadditions">
-              <span>
-                <FaUpload /> 
-                <p>Share Betcode</p>
-              </span>
-              <span>
-                <FcUpload />
-                <p>Share Betcode</p>
-              </span>
-              <span>
-                <FaPoll />
-                <p>create a poll</p>
-              </span>
-              <span>
-                <FcShare />
-                <p>write an Article</p>
-              </span>
+      <div className=" flex flex-col">
+        <div className="flex shrink-0">
+          <img
+            src={profile.picture}
+            alt="Logo"
+            className="border rounded-full w-14 h-14 shrink-0 "
+          />
+          <div className="w-full pl-4">
+            <input
+              placeholder="share your code"
+              name="body"
+              className="w-10/12 h-12 mt-1 mb-2"
+              onChange={(e) => {
+                setPost(e.target.value);
+              }}
+              value={post}
+            />
+
+            <input
+              type="file"
+              name="screenshot"
+              onChange={(e) => {
+                setScreenshot(e.target.files);
+              }}
+              multiple
+             
+            />
+
+            <div className="ml-4">
+              <div className="flex justify-between mb-2 w-10/12">
+                <span className="pr-2">
+                  <FaUpload />
+                </span>
+                <span className="pr-2">
+                  <FcUpload />
+                </span>
+                <span className="pr-2">
+                  <FaPoll />
+                </span>
+                <span className="pr-2">
+                  <FcShare />
+                </span>
+              </div>
             </div>
           </div>
         </div>
+        <button className="w-16 h-8 rounded-full mt-2 relative left-[230px] md:left-[220px] lg:left-[350px] bg-red-600 text-dim-50">
+          Share
+        </button>
       </div>
-    </div>
-    <button className="btn-sharebox">Share</button>
     </form>
   );
 }
 
 export default ShareBox
+

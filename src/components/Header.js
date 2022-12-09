@@ -15,7 +15,7 @@ const Header = () => {
   return (
     < >
     <div className='flex justify-between bg-dim-50 md:bg-dim-100 '>
-    <h1 ><Link to='/' className='uppercase font-bold text-3xl text-red-600 hover:text-gray-600'>LOGO</Link> </h1>
+    <h1 ><Link to='/' className='uppercase font-bold text-3xl text-red-600 hover:text-gray-600 '>LOGO</Link> </h1>
     <div className='md:flex  fixed hidden left-4 top-0 mt-12 md:flex-row md:justify-between md:static md:mt-1.5  '>
         <Link className='pr-8 pb-8 md:pb-0 uppercase hover:text-gray-600 ease-in text-md font-bold' to='/'>Home</Link>
         <Link  className='pr-8 pb-8 md:pb-0 uppercase hover:text-gray-600 ease-in text-md font-bold'to='/contact'>Contact</Link>
@@ -33,7 +33,7 @@ const Header = () => {
 
 
 
-        <div className='pr-8 mt-2 md:hidden 'onClick={handleToggle}>
+        <div className='pr-28 mt-2 md:hidden 'onClick={handleToggle}>
           {toggle ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
     </div>
