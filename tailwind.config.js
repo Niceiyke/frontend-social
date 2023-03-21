@@ -17,8 +17,10 @@ module.exports = {
           800: '#846358',
           900: '#43302b',
         },
+        'main': '#38bdf8',
       }
     },
   },
   plugins: [],
+  important: true,
 }

@@ -1,68 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaHome, FaArtstation, FaBuffer, FaCalendarAlt } from "react-icons/fa";
+import React from 'react'
+import TwitterIcon from '@mui/icons-material/Twitter';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
+import { SidebarOptions } from './SidebarOptions';
 
 const Sidebar = () => {
   return (
-    <div className="pl-4 flex flex-col fixed">
-      <h1>
-        <Link
-          to="/"
-          className="uppercase font-bold text-3xl text-red-600 hover:text-gray-600 "
-        >
-          LOGO
-        </Link>{" "}
-      </h1>
-      <div className="flex gap-3  mt-4   ">
-        {" "}
-        <span className="mt-0">
-          <FaHome size="2em" />{" "}
-        </span>
-        <Link
-          to="/"
-          className="font-bold text-xl mt-1 text-gray-600 hover:text-red-600 "
-        >
-          Home
-        </Link>
-      </div>
-      <div className="flex gap-3  mt-4  ">
-        {" "}
-        <span className="mt-0">
-          <FaArtstation size="2em" />{" "}
-        </span>
-        <Link
-          to="/"
-          className="font-bold text-xl mt-1 text-gray-600 hover:text-red-600 "
-        >
-          Profile
-        </Link>
-      </div>
-      <div className="flex gap-3  mt-4  ">
-        {" "}
-        <span className="mt-0">
-          <FaBuffer size="2em" />{" "}
-        </span>
-        <Link
-          to="/"
-          className="font-bold text-xl mt-1 text-gray-600 hover:text-red-600 "
-        >
-          Explore
-        </Link>
-      </div>
-      <div className="flex gap-3  mt-4  ">
-        {" "}
-        <span className="mt-0">
-          <FaCalendarAlt size="2em" />{" "}
-        </span>
-        <Link
-          to="/"
-          className="font-bold text-xl mt-1 text-gray-600 hover:text-red-600 "
-        >
-          Favourite
-        </Link>
-      </div>
+    <div className=''>
+    <div className=' pl-5 pr-5 mt-5 border-r-2 w-3/12 min-w-[250px] sticky top-0 '>
+        <TwitterIcon fontSize='large' className='text-main text-3xl '/>
+        <SidebarOptions Icon={HomeOutlinedIcon} text='Home' />
+        <SidebarOptions Icon={ExploreOutlinedIcon} text='Explore' />
+        <SidebarOptions Icon={Person2OutlinedIcon} text='Profile' />
     </div>
-  );
-};
+    </div>
 
-export default Sidebar;
+  )
+}
+
+export default Sidebar

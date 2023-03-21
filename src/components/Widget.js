@@ -1,20 +1,15 @@
-import React from "react";
-import Trend from "./Trend";
-
+import React from 'react'
+import TopPost from './TopPost'
+import WhoToFollow from './WhoToFollow'
 
 const Widget = () => {
   return (
-    <div className="widgetcontainer">
-      <div className="w-full">
-        <input type="text" placeholder="Search here" className="w-4/5" />
-      </div>
-      <div className="mt-4 ">
-        <h3 className="text-2xl font-bold">Trends For You</h3>
+    <div className='pl-2.5 pr-2.5 mt-5 border-l-2 w-4/12 min-w-[250px]'>
+      <TopPost/>
+      <WhoToFollow/>
 
-        <Trend />
-      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Widget;
+export default Widget
