@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopPost = () => {
   return (
-    <div className='rounded-2xl bg-[#f7f9f9]'>
+    <div className='rounded-2xl bg-sidebar'>
         <h2 className='text-xl font-extrabold '>Trending Post </h2>
         <div>
             <h3 className='text-xs font-medium text-gray-900 mt-4 pl-4'>1. Trending </h3>

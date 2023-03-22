@@ -3,7 +3,7 @@ import { Avatar,Button } from '@mui/material'
 
 const WhoToFollow = () => {
   return (
-    <div className='rounded-2xl bg-[#f7f9f9] mt-5'>
+    <div className='rounded-2xl bg-sidebar mt-5'>
     <h2 className='text-xl font-extrabold ml-4'>Who To Follow </h2>
     <div >
         <div className='flex mt-5 items-center'>

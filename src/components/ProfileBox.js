@@ -1,24 +1,29 @@
 import React from 'react'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { Avatar, Button} from '@mui/material'
+import { Link } from 'react-router-dom';
 import Post from './Post';
 
 const ProfileBox = () => {
   return (
     <div className='flex flex-col w-5/12 '>
-       <div className='sticky top-0 bg-white z-[100] border-solid border border-gray-400 px-5 py-4 min-w-fit rounded-md flex  items-center' >
-            <KeyboardBackspaceIcon/>
+      
+      <div className='sticky top-0 bg-white z-[100] border-solid border border-gray-400 px-5 py-4 min-w-fit rounded-md flex  items-center' >
+      <Link to='/'><KeyboardBackspaceIcon/></Link>
+            
             <div className='pl-4'>
             <h2 className='text-xl font-bold'>David iyke</h2>
             <h3 className='text-sm font-normal text-gray-600'>2005 tweets</h3>
             </div>
         </div>
-        <div className='bg-gray-300'>
+ 
+
+        <div className='bg-gray-300 flex items-center'>
         <div className=' '>
-             <Avatar className='mt-4 mx-auto' sx={{ width: 150, height: 150 }} src='https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.2.497941786.1679395633&semt=ais'/>
+             <Avatar className='mt-2.5 ml-2' sx={{ width: 150, height: 150 }} src='https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.2.497941786.1679395633&semt=ais'/>
         </div>
         <div className=''>
-          <div className='text-center'>
+          <div className='text-center mt-2.5'>
                 <h2 className='text-xl font-bold'>David Iyke</h2>
                 <h3 className='text-xs font-normal' >@niceiyke</h3>
             </div>

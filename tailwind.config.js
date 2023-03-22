@@ -5,21 +5,13 @@ module.exports = {
     
     extend: {
       colors: {
-        dim: {
-          50: '#f7f7f8',
-          100: '#f2e8e5',
-          200: '#eaddd7',
-          300: '#e0cec7',
-          400: '#d2bab0',
-          500: '#bfa094',
-          600: '#a18072',
-          700: '#977669',
-          800: '#846358',
-          900: '#43302b',
-        },
+
         'main': '#38bdf8',
+        'sidebar':'#f7f9f9'
       }
     },
+    
+    
   },
   plugins: [],
   important: true,

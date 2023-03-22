@@ -60,7 +60,8 @@ const Post = ({displayName, verifyBaged, username, timestamp,post,image,avatar,l
 - Thich Nhat Hanh</p>
                 </div>
             </div>
-            <img src='https://images.unsplash.com/photo-1474447976065-67d23accb1e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60' alt=''  className='rounded-2xl w-full'/>
+              <div className='flex gap-2.5'> <img src='https://images.unsplash.com/photo-1474447976065-67d23accb1e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60' alt=''  className='rounded-2xl w-[45%]'/>
+            <img src='https://images.unsplash.com/photo-1474447976065-67d23accb1e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60' alt=''  className='rounded-2xl w-[45%]'/></div>
             <div className='flex justify-between mt-5'>
               {/*post footer*/}
               <FavoriteBorderOutlinedIcon fontSize='small'/>
