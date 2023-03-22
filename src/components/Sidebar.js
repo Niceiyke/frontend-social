@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <div className=''>
-    <div className='hidden md:block  pl-5 pr-5 mt-5 border-r-2  w-3/12 min-w-[250px] sticky top-0 '>
+    <div className='pl-5 pr-5 mt-5 border-r-2  w-1/12  sticky top-0 '>
         <TwitterIcon fontSize='large' className='text-main text-3xl '/>
         <Link to='/'><SidebarOptions Icon={HomeOutlinedIcon} text='Home' /></Link>
         <Link to='/profile/1'><SidebarOptions Icon={Person2OutlinedIcon} text='Profile' /></Link>
