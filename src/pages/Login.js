@@ -1,8 +1,16 @@
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { Avatar, Button } from '@mui/material'
+import useAuth from '../hooks/useAuth'
+import { axiox } from '../utility/axios'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+
 
 const Login = () => {
+    const navigate=useNavigate()
+    const {setAuth}=useAuth()
+    const{setItem}=useLocalStorage()
+   
     const bgImage ='https://img.freepik.com/free-vector/blue-curve-frame-template_53876-114605.jpg?size=626&ext=jpg&ga=GA1.1.497941786.1679395633&semt=ais'
   
     const [data,setData]=useState({email:'',password:''})
@@ -12,10 +20,31 @@ const Login = () => {
         setData({...data,[event.target.name]:event.target.value})
     }
 
-    const handleSubmit= (event)=>{
-        event.preventDefault()
-        console.log('data',data)
+    const handleSubmit= async(event)=>{
         
+        event.preventDefault()
+        try{
+            const response= await axiox.post('login/',data)
+            
+            if (response.status ==200){
+                const accessToken =response?.data['access']
+
+                setAuth({accessToken})
+                setItem('accessToken',response?.data)
+                navigate('/')
+                
+                console.log('done')
+    
+                
+                
+                
+            }
+    
+        }catch(err){
+            console.log(err)
+        }
+    
+
     }
     return (
         <div className='h-screen flex items-center bg-cover ' style={{backgroundImage: `url(${bgImage})`}}>
