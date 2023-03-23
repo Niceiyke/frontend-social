@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import { Avatar, Button } from '@mui/material'
+import jwt_decode from 'jwt-decode'
 import useAuth from '../hooks/useAuth'
 import { axiox } from '../utility/axios'
 import { useLocalStorage } from '../hooks/useLocalStorage'
@@ -8,7 +9,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 
 const Login = () => {
     const navigate=useNavigate()
-    const {setAuth}=useAuth()
+    const {setAuthToken,setUser}=useAuth()
     const{setItem}=useLocalStorage()
    
     const bgImage ='https://img.freepik.com/free-vector/blue-curve-frame-template_53876-114605.jpg?size=626&ext=jpg&ga=GA1.1.497941786.1679395633&semt=ais'
@@ -27,10 +28,12 @@ const Login = () => {
             const response= await axiox.post('login/',data)
             
             if (response.status ==200){
-                const accessToken =response?.data['access']
+                const accessToken =response?.data
 
-                setAuth({accessToken})
-                setItem('accessToken',response?.data)
+                setAuthToken({accessToken})
+                setItem('accessToken',JSON.stringify(response?.data))
+                setUser(jwt_decode(accessToken['access']))
+                setItem("activeUser", jwt_decode(accessToken));
                 navigate('/')
                 
                 console.log('done')
@@ -78,7 +81,7 @@ const Login = () => {
             </form>
             <div className='flex flex-col justify-center'>
             <p
-              class=" text-center font-semibold mt-5">
+              className =" text-center font-semibold mt-5">
               OR
             </p>
             <Button className='bg-blue-700 text-white font-semibold mt-5'>Continue with Facebook</Button>

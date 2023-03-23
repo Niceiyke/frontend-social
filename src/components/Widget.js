@@ -4,7 +4,7 @@ import WhoToFollow from './WhoToFollow'
 
 const Widget = () => {
   return (
-    <div className='hidden md:block pl-2.5 pr-2.5 mt-5 border-l-2 w-4/12 min-w-[250px]'>
+    <div className='hidden md:block pl-2.5 pr-2.5 mt-5 border-l-2 min-w-[350px] '>
       <TopPost/>
       <WhoToFollow/>
 
