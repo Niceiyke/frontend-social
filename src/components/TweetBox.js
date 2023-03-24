@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Avatar} from '@mui/material'
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+import {axiox} from '../utility/axios'
 
 
 const TweetBox = () => {
@@ -19,9 +20,20 @@ const handleImage=(event)=>{
   setData({...data,[event.target.name]:event.target.files})
 }
 
-const handleSubmit= (event)=>{
+const handleSubmit= async (event)=>{
     event.preventDefault()
-    console.log('data',data)
+    const images=data['images']
+    const formData =new FormData()
+    for(let i=0; i<images.length; i++){
+      formData.append(`${images[i].name}`,images[i])
+    }
+
+    formData.append('body',data['body'])
+
+    const response =await axiox.post('create/',formData)
+
+    console.log(response)
+
     
 }
   return (

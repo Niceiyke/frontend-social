@@ -8,7 +8,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 
 
 const Login = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate();
     const {setAuthToken,setUser}=useAuth()
     const{setItem}=useLocalStorage()
    
@@ -29,17 +29,15 @@ const Login = () => {
             
             if (response.status ==200){
                 const accessToken =response?.data
+                
 
-                setAuthToken({accessToken})
-                setItem('accessToken',JSON.stringify(response?.data))
-                setUser(jwt_decode(accessToken['access']))
-                setItem("activeUser", jwt_decode(accessToken));
+                setAuthToken(accessToken)
+                localStorage.setItem('accessToken',JSON.stringify(response?.data))
+                setUser(JSON.parse(JSON.stringify(jwt_decode(accessToken['access']))))
+                localStorage.setItem("activeUser", JSON.stringify(jwt_decode(accessToken['access'])));
+               
                 navigate('/')
-                
-                console.log('done')
-    
-                
-                
+   
                 
             }
     

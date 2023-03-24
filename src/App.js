@@ -13,9 +13,10 @@ function App() {
       <Route element={<RequireAuth/>}>
           <Route path='/' element={<Home/>} />
           <Route path='/profile/:id' element={<Profile/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/signup' element={<Register/>} />
+          
       </Route>
+      <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<Register/>} />
     </Routes>
 
   );
