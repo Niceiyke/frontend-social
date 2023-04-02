@@ -3,7 +3,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import { Avatar, Button } from '@mui/material'
 import jwt_decode from 'jwt-decode'
 import useAuth from '../hooks/useAuth'
-import { axiox } from '../utility/axios'
+import axios from 'axios'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 
 
@@ -25,7 +25,10 @@ const Login = () => {
         
         event.preventDefault()
         try{
-            const response= await axiox.post('login/',data)
+            const response = await axios.post(
+              "http://127.0.0.1:8000/api/login/",
+              data
+            );
             
             if (response.status ==200){
                 const accessToken =response?.data

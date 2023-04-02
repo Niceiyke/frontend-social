@@ -1,111 +1,195 @@
-import React from 'react'
-import { Avatar } from '@mui/material'
-import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
-import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import RepeatOutlinedIcon from '@mui/icons-material/RepeatOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
+import React, { useState } from "react";
+import { Avatar } from "@mui/material";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import uuid from "react-uuid";
+import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import ImageList from "./ImageList";
+import IconBtns from "./IconBtns";
+import SharePost from "./SharePost";
+import { useGetQuery } from "../hooks/useGetQuery";
+import useAPIS from "../hooks/useAPIS";
+import { Link } from "react-router-dom";
 
+dayjs.extend(relativeTime);
 
-const Post = ({displayName, verifyBaged, username, timestamp,post,image,avatar,likes,comment,views,retweet}) => {
+const Post = () => {
+  const [getPosts, likePost] = useAPIS();
+
+  const [resharing, setResharing] = useState(false);
+
+  const { isLoading, data, isError } = useGetQuery(["post"], getPosts, {});
+
+  console.log(data?.data);
+
   return (
-    <>
+    !isLoading &&
+    !isError &&
+    data?.data.map((post) => {
+      return (
+        post?.post_id && (
+          <div key={uuid(2)}>
+            {post.shared_body ? (
+              <>
+                <div className="flex items-start border-b border-solid border-gray-300 pb-2.5">
+                  <div>
+                    <Avatar
+                      sx={{ width: 70, height: 70 }}
+                      src={`http://127.0.0.1:8000/media/${post.shared_user_picture}`}
+                      className="ml-2 mt-3"
+                    />
+                  </div>
+                  <div className="flex-1 p-2.5">
+                    <div>
+                      <div>
+                        <h3 className="text-md font-black">
+                          {post.shared_user_name}
+                          <span>
+                            <VerifiedOutlinedIcon className="text-sm  text-main pl-1" />
+                          </span>
+                          <span className="text-xs pl-2 font-extrabold text-gray-500">
+                            @{post.shared_user_username}
+                          </span>
+                          <span className="text-xs pl-2 font-extrabold text-gray-500">
+                            {dayjs(`${post.shared_on}`).fromNow()}
+                          </span>
+                        </h3>
+                      </div>
 
+                      <Link to={`post/${post.post_id}`}>
+                        <p>{post.shared_body}</p>
+                        <div className="flex flex-wrap">
+                          <ImageList images={post.shared_images} />
+                        </div>
+                      </Link>
+                    </div>
 
-    <div className='flex items-start border-b border-solid border-gray-300 pb-2.5 '>
-        <div className='pl-5 mt-3'>
-        <Avatar sx={{ width: 70, height: 70 }} src='https://img.freepik.com/free-photo/indoor-shot-glad-young-bearded-man-mustache-wears-denim-shirt-smiles-happily_273609-8698.jpg?size=626&ext=jpg&ga=GA1.2.497941786.1679395633&semt=sph'/>
-        </div>
-        {/*Body*/}
-        <div className='flex-1 p-2.5'> 
-            <div>
-                <div>
-                  
-                    <h3 className='text-md font-black'>Iyke dave <span ><VerifiedOutlinedIcon className='text-sm text-main'/></span><span className='text-xs font-extrabold text-gray-500'>@niceiyke</span></h3>
+                    {/*main Body*/}
+
+                    <div className="flex items-start border-b border-solid border-gray-300 pb-2.5 border rounded ml-2 mr-2 ">
+                      <Link to={`post/${post.original_post_id}`}>
+                        <div className="flex">
+                          <div className="ml-2 mt-2">
+                            <Avatar
+                              sx={{ width: 70, height: 70 }}
+                              src={`http://127.0.0.1:8000/media/${post.author_picture}`}
+                            />
+                          </div>
+                          <div className="flex-1 mt-auto mb-auto ml-2">
+                            <div>
+                              <h3 className="text-md font-black">
+                                {post.author_name}
+                                <span>
+                                  <VerifiedOutlinedIcon className="text-sm  text-main pl-1" />
+                                </span>
+                                <span className="text-xs pl-2 font-extrabold text-gray-500">
+                                  @{post.author_username}
+                                </span>
+                                <span className="text-xs pl-2 font-extrabold text-gray-500">
+                                  {dayjs(`${post.created_on}`).fromNow()}
+                                </span>
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="ml-2">
+                          <p>{post.body}</p>
+                          <div className="flex flex-wrap">
+                            <ImageList images={post.images} />
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="flex justify-between mt-5 ml-auto mr-auto">
+                      {/*post footer*/}
+                      <Link to={`post/${post.post_id}`}>
+                        <ChatBubbleOutlineOutlinedIcon fontSize="small" />
+                      </Link>
+                      {post.favourited ? (
+                        <IconBtns
+                          Icon={FavoriteIcon}
+                          onClick={() => likePost(post.post_id)}
+                          color="error"
+                        />
+                      ) : (
+                        <IconBtns
+                          Icon={FavoriteBorderOutlinedIcon}
+                          onClick={() => likePost(post.post_id)}
+                        />
+                      )}
+                      <EqualizerIcon fontSize="small" />
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  
-                  <p>"Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy."
-- Thich Nhat Hanh</p>
+              </>
+            ) : (
+              <div className="flex items-start border-b border-solid border-gray-300 pb-2.5 ">
+                <div className="pl-5 mt-3">
+                  <Avatar
+                    sx={{ width: 70, height: 70 }}
+                    src={`http://127.0.0.1:8000/media/${post.author_picture}`}
+                  />
                 </div>
-            </div>
-            <img src='https://img.freepik.com/free-photo/confident-businessman-posing-outside_74855-1551.jpg?size=626&ext=jpg&ga=GA1.2.497941786.1679395633&semt=sph' alt=''  className='rounded-2xl w-full'/>
-            <div className='flex justify-between mt-5'>
-              {/*post footer*/}
-              <FavoriteBorderOutlinedIcon fontSize='small'/>
-              <ChatBubbleOutlineOutlinedIcon fontSize='small'/>
-              <RepeatOutlinedIcon fontSize='small'/>
-              <EqualizerIcon fontSize='small'/>
-              <ShareOutlinedIcon fontSize='small'/>
+                <div className="flex-1 p-2.5">
+                  <div>
+                    <h3 className="text-md font-black">
+                      {post.author_name}
+                      <span>
+                        <VerifiedOutlinedIcon className="text-sm  text-main pl-1" />
+                      </span>
+                      <span className="text-xs pl-2 font-extrabold text-gray-500">
+                        @{post.author_username}
+                      </span>
+                      <span className="text-xs pl-2 font-extrabold text-gray-500">
+                        {dayjs(`${post.created_on}`).fromNow()}
+                      </span>
+                    </h3>
+                  </div>
+                  <Link to={`post/${post.post_id}`}>
+                    <p>{post.body}</p>
+                    <div className="flex flex-wrap">
+                      <ImageList images={post.images} />
+                    </div>
+                  </Link>
 
+                  <div className="flex justify-between mt-5  ml-auto mr-auto">
+                    {/*post footer*/}
 
-            </div>
-        </div>
-    </div>
-    <div className='flex items-start border-b border-solid border-gray-300 pb-2.5 '>
-        <div className='pl-5 mt-3'>
-        <Avatar sx={{ width: 70, height: 70 }} src='https://img.freepik.com/free-photo/indoor-shot-glad-young-bearded-man-mustache-wears-denim-shirt-smiles-happily_273609-8698.jpg?size=626&ext=jpg&ga=GA1.2.497941786.1679395633&semt=sph'/>
-        </div>
-        {/*Body*/}
-        <div className='flex-1 p-2.5'> 
-            <div>
-                <div>
-                  
-                    <h3 className='text-md font-black'>Iyke dave <span ><VerifiedOutlinedIcon className='text-sm text-main'/></span><span className='text-xs font-extrabold text-gray-500'>@niceiyke</span></h3>
+                    <Link to={`post/${post.post_id}`}>
+                      <ChatBubbleOutlineOutlinedIcon fontSize="small" />
+                    </Link>
+
+                    {post.favourited ? (
+                      <IconBtns
+                        Icon={FavoriteIcon}
+                        onClick={() => likePost(post.post_id)}
+                        color="error"
+                      />
+                    ) : (
+                      <IconBtns
+                        Icon={FavoriteBorderOutlinedIcon}
+                        onClick={() => likePost(post.post_id)}
+                      />
+                    )}
+
+                    <EqualizerIcon fontSize="small" />
+                  </div>
                 </div>
-                <div>
-                  
-                  <p>"Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy."
-- Thich Nhat Hanh</p>
-                </div>
-            </div>
-              <div className='flex gap-2.5'> <img src='https://images.unsplash.com/photo-1474447976065-67d23accb1e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60' alt=''  className='rounded-2xl w-[45%]'/>
-            <img src='https://images.unsplash.com/photo-1474447976065-67d23accb1e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60' alt=''  className='rounded-2xl w-[45%]'/></div>
-            <div className='flex justify-between mt-5'>
-              {/*post footer*/}
-              <FavoriteBorderOutlinedIcon fontSize='small'/>
-              <ChatBubbleOutlineOutlinedIcon fontSize='small'/>
-              <RepeatOutlinedIcon fontSize='small'/>
-              <EqualizerIcon fontSize='small'/>
-              <ShareOutlinedIcon fontSize='small'/>
+              </div>
+            )}
+          </div>
+        )
+      );
+    })
+  );
+};
 
-
-            </div>
-        </div>
-    </div>
-    <div className='flex items-start border-b border-solid border-gray-300 pb-2.5 '>
-        <div className='pl-5 mt-3'>
-        <Avatar sx={{ width: 70, height: 70 }} src='https://img.freepik.com/free-photo/indoor-shot-glad-young-bearded-man-mustache-wears-denim-shirt-smiles-happily_273609-8698.jpg?size=626&ext=jpg&ga=GA1.2.497941786.1679395633&semt=sph'/>
-        </div>
-        {/*Body*/}
-        <div className='flex-1 p-2.5'> 
-            <div>
-                <div>
-                  
-                    <h3 className='text-md font-black'>Iyke dave <span ><VerifiedOutlinedIcon className='text-sm text-main'/></span><span className='text-xs font-extrabold text-gray-500'>@niceiyke</span></h3>
-                </div>
-                <div>
-                  
-                  <p>"Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy."
-- Thich Nhat Hanh</p>
-                </div>
-            </div>
-            <img src='https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60' alt=''  className='rounded-2xl w-full'/>
-            <div className='flex justify-between mt-5'>
-              {/*post footer*/}
-              <FavoriteBorderOutlinedIcon fontSize='small'/>
-              <ChatBubbleOutlineOutlinedIcon fontSize='small'/>
-              <RepeatOutlinedIcon fontSize='small'/>
-              <EqualizerIcon fontSize='small'/>
-              <ShareOutlinedIcon fontSize='small'/>
-
-
-            </div>
-        </div>
-    </div>
-    </>
-  )
-}
-
-export default Post
+export default Post;
